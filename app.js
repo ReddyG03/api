@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose');
 app.use(express.json());
-const port = 3000
+const port = process.env.PORT || 80;
 const { MongoClient, ServerApiVersion, Collection } = require('mongodb');
 const uri = "mongodb+srv://toshiro03:Toshiro03@cluster0.8dt91ql.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });

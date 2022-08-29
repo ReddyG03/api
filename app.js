@@ -14,6 +14,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ 
     extended: true
 }));
+var a=false;
 app.post('/signup', (req, res) => {
   const {name,password,email}=req.body;
   console.log(name);
@@ -22,7 +23,7 @@ app.post('/signup', (req, res) => {
       if (err) throw err; 
       console.log("Record inserted Successfully");         
   });     
-  return res.redirect('/'); 
+  return res.redirect('/loginsignup'); 
 })
 app.post('/contact', (req, res) => {
   const {name,number,email}=req.body;
@@ -31,23 +32,34 @@ app.post('/contact', (req, res) => {
       if (err) throw err; 
       console.log("Record inserted Successfully");         
   });     
-  return res.redirect('http://127.0.0.1:5500/index1.html'); 
+  return res.redirect('/'); 
 })
 app.post('/login', (req, res) => {
   const {name,password,email}=req.body;
   db.collection('user').findOne({name},function(err, collection){ 
       if (err) throw err; 
       if(collection.password==password)
-      console.log("Record inserted Successfully");
+      a=true;
       else
       return res.send("error");         
-  });     
+  }); 
   return res.redirect('/'); 
 })
 app.get('/logout', (req, res) => {
-  return res.redirect('thankyou'); 
+  a=false;
+  return res.redirect('/'); 
 })
-
+app.get('/loginsignup',function(req,res){
+  a=false;
+  res.sendFile(path.join(__dirname+'/index.html'));
+});
+app. get('/contact',function(req,res){if(a)
+  res.sendFile(path.join(__dirname+'/contact.html')); else return res.redirect('/loginsignup');
+});
+app. get('/',function(req,res){if(a)
+  res.sendFile(path.join(__dirname+'/index1.html'))
+  else return res.redirect('/loginsignup');
+});
 app.listen(port, () => {
 console.log(`Example app listening on port ${port}`)
 })

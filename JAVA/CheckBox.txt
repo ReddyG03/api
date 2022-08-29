@@ -1,0 +1,166 @@
+Activity.xml:---------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:drawable/progress_horizontal"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Your Item"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#E31B33"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true">
+    </TextView>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="PIZZA"
+        android:textColor="#FFEB3B"
+        android:textStyle="bold"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="20sp"
+        >
+
+    </CheckBox>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="PASTA"
+        android:textColor="#FFEB3B"
+        android:textStyle="bold"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="20sp"
+        >
+
+    </CheckBox>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="BURGER"
+        android:textColor="#FFEB3B"
+        android:textStyle="bold"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="20sp"
+        >
+
+    </CheckBox>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb4"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="CHEESE SANDWICH"
+        android:textColor="#FFEB3B"
+        android:textStyle="bold"
+        android:layout_marginTop="170dp"
+        android:layout_marginLeft="20sp"
+        >
+
+    </CheckBox>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/b1"
+        android:text="SUBMIT"
+        android:textSize="30dp"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="100sp"
+        android:layout_marginTop="250dp"
+        android:background="@color/design_default_color_primary_dark">
+
+    </Button>
+</RelativeLayout>
+
+
+
+
+MainActivity.java:----
+
+
+package com.test;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    CheckBox c1,c2,c3,c4;
+    Button btn;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        c1=(CheckBox) findViewById(R.id.cb1);
+        c2=(CheckBox) findViewById(R.id.cb2);
+        c3=(CheckBox) findViewById(R.id.cb3);
+        c4=(CheckBox) findViewById(R.id.cb4);
+        btn=(Button) findViewById(R.id.b1);
+        btn.setOnClickListener((view) -> {
+            int amt=0;
+            StringBuilder result =new StringBuilder();
+            result.append("Selected Items:=");
+            if(c1.isChecked())
+            {
+                result.append("\nPIZZA 100 Rs");
+                amt+=100;
+            }
+            if(c2.isChecked())
+            {
+                result.append("\nPASTA 150 Rs");
+                amt+=150;
+            }
+            if(c3.isChecked())
+            {
+                result.append("\nBURGER 50 Rs");
+                amt+=50;
+            }
+            if(c4.isChecked())
+            {
+                result.append("\nCHEESE SANDWICH 40 Rs");
+                amt+=40;
+            }
+            result.append("\n Total Amount="+amt);
+            Toast.makeText(getApplicationContext(),result.toString(),Toast.LENGTH_SHORT).show();
+        });
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

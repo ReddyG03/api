@@ -1,0 +1,183 @@
+Activity 1.xml :-----
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E578F8"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et1"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:hint="User Name"
+        android:textColor="#370085"
+        android:textSize="30dp"
+        android:textStyle="bold">
+    </EditText>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et2"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_below="@id/et1"
+        android:layout_marginTop="10dp"
+        android:textColor="#370085"
+        android:textSize="30dp"
+        android:textStyle="bold">
+    </EditText>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/b3"
+        android:layout_centerHorizontal="true"
+        android:text="LOGIN"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:layout_below="@id/et2"
+        android:layout_marginTop="46dp"
+       >
+    </Button>
+</RelativeLayout>
+
+
+
+Main_Activity.java:---
+
+package com.login;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    EditText e1,e2;
+    Button btn3;
+    int counter =3;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        e1=(EditText) findViewById(R.id.et1);
+        e2=(EditText) findViewById(R.id.et2);
+        btn3=(Button) findViewById(R.id.b3);
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String u,p;
+                String un="Shiv", pass="Sk@1234";
+                u=e1.getText().toString();
+                p=e2.getText().toString();
+                if (u.equals(un)==true && p.equals(pass)==true)
+                {
+                    Intent i3= new Intent(getApplicationContext(), MainActivity2.class);
+                    startActivity(i3);
+                }
+                else{
+                    counter--;
+                    Toast.makeText(getApplicationContext(), "Invalid Username/Password \nChances Left "+counter, Toast.LENGTH_SHORT).show();
+                    if (counter==0){
+                        btn3.setEnabled(false);
+                    }
+                }
+            }
+        });
+    }
+}
+
+
+
+
+Activity2.xml:-----
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8BC34A"
+    tools:context=".MainActivity2">
+
+    <TextView
+        android:id="@+id/t3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Successfully Login"
+        android:textColor="#FFFFFF"
+        android:textSize="40dp"
+        android:textStyle="bold"></TextView>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/b4"
+        android:layout_centerHorizontal="true"
+        android:text="LOG OUT"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:layout_below="@id/t3"
+        android:layout_marginTop="46dp"
+        app:backgroundTint="@null"
+        android:background="@drawable/roundedbutton">
+    </Button>
+
+
+</RelativeLayout>
+
+
+Main_Activity2.java:-----
+
+
+package com.login;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity2 extends AppCompatActivity {
+    Button btn4, btn5;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+        btn4=(Button) findViewById(R.id.b4);
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i4= new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i4);
+            }
+        });
+        btn5=(Button) findViewById(R.id.b5);
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i5= new Intent(getApplicationContext(), MainActivity3.class);
+                startActivity(i5);
+            }
+        });
+    }
+}
+
+

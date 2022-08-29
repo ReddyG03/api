@@ -1,0 +1,132 @@
+Activity.xml:-------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="100dp"
+        android:textSize="18dp"
+        android:text="Select Your Course"
+        android:textStyle="bold"
+        android:id="@+id/tv1"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/rdgp"
+        android:layout_below="@+id/tv1">
+
+        <RadioButton
+            android:id="@+id/rdJava"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:onClick="onRadioButtonClicked"
+            android:padding="10dp"
+            android:text="Java" />
+        <RadioButton
+            android:id="@+id/rdPython"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:onClick="onRadioButtonClicked"
+            android:padding="10dp"
+            android:text="Python" />
+        <RadioButton
+            android:id="@+id/rdAndroid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:onClick="onRadioButtonClicked"
+            android:padding="10dp"
+            android:text="Android" />
+        <RadioButton
+            android:id="@+id/rdAngular"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:onClick="onRadioButtonClicked"
+            android:padding="10dp"
+            android:text="AngularJS" />
+    </RadioGroup>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn"
+            android:layout_marginLeft="100dp"
+            android:layout_below="@+id/rdgp"
+            android:text="Get Course"/>
+
+</RelativeLayout>
+
+
+
+
+MainActivity.java:----------
+
+
+
+package com.radio;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    RadioButton android, java, angular, python;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        android=(RadioButton)findViewById(R.id.rdAndroid);
+        angular=(RadioButton)findViewById(R.id.rdAngular);
+        java=(RadioButton)findViewById(R.id.rdJava);
+        python=(RadioButton)findViewById(R.id.rdPython);
+        Button btn=(Button)findViewById(R.id.btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String result = "Selected Course: ";
+                result+= (android.isChecked())?"Android":(angular.isChecked())?"AngularJS" :(java.isChecked())?"Java" :(python.isChecked())?"Python" :"";
+                Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+    }
+    public void onRadioButtonClicked(View view){
+        boolean checked= ((RadioButton) view).isChecked();
+        String str = "";
+
+        switch (view.getId()){
+            case R.id.rdAndroid:
+                if(checked)
+                    str="Android Selected";
+                break;
+            case R.id.rdAngular:
+                if(checked)
+                    str="Angulara Selected";
+                break;
+            case R.id.rdJava:
+                if(checked)
+                    str="Java Selected";
+                break;
+            case R.id.rdPython:
+                if(checked)
+                    str="Python Selected";
+                break;
+        }
+        Toast.makeText(getApplicationContext(),str, Toast.LENGTH_SHORT).show();
+    }
+}

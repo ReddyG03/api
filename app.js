@@ -59,7 +59,7 @@ app.get('/loginsignup',function(req,res){
   res.sendFile(path.join(__dirname+'/index.html'));
 });
 app. get('/contact',function(req,res){
-  res.sendFile(path.join(__dirname+'/contact.html')); else return res.redirect('/loginsignup');
+  res.sendFile(path.join(__dirname+'/contact.html')); 
 });
 app. get('/',function(req,res){
   res.sendFile(path.join(__dirname+'/index1.html'))

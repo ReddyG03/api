@@ -14,7 +14,12 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ 
     extended: true
 }));
-var a=false;
+
+
+
+
+
+
 app.post('/signup', (req, res) => {
   const {name,password,email}=req.body;
   console.log(name);
@@ -39,18 +44,18 @@ app.post('/login', (req, res) => {
   db.collection('user').findOne({name},function(err, collection){ 
       if (err) throw err; 
       if(collection.password==password)
-      a=true;
+
       else
       return res.send("error");         
   }); 
   return res.redirect('/'); 
 })
 app.get('/logout', (req, res) => {
-  a=false;
+
   return res.redirect('/'); 
 })
 app.get('/loginsignup',function(req,res){
-  a=false;
+
   res.sendFile(path.join(__dirname+'/index.html'));
 });
 app. get('/contact',function(req,res){if(a)

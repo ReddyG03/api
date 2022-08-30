@@ -58,7 +58,7 @@ app.get('/loginsignup',function(req,res){
 
   res.sendFile(path.join(__dirname+'/index.html'));
 });
-app. get('/contact',function(req,res){if(a)
+app. get('/contact',function(req,res){
   res.sendFile(path.join(__dirname+'/contact.html')); else return res.redirect('/loginsignup');
 });
 app. get('/',function(req,res){

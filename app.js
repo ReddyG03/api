@@ -34,7 +34,7 @@ app.post('/contact', (req, res) => {
   const {name,number,email}=req.body;
   const    data={name,number,email};
   db.collection('contact').insertOne(data,function(err, collection){ 
-      if (err) throw err; 
+      if (err) res.send("err"); 
       console.log("Record inserted Successfully");         
   });     
   return res.redirect('/'); 
@@ -42,10 +42,10 @@ app.post('/contact', (req, res) => {
 app.post('/login', (req, res) => {
   const {name,password,email}=req.body;
   db.collection('user').findOne({name},function(err, collection){ 
-      if (err) throw err; 
+      
       if(collection.password==password)
 
-      else
+      if (err) 
       return res.send("error");         
   }); 
   return res.redirect('/'); 
@@ -62,7 +62,7 @@ app. get('/contact',function(req,res){
   res.sendFile(path.join(__dirname+'/contact.html')); 
 });
 app. get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/index1.html'))
+  res.sendFile(path.join(__dirname+'/index1.html'));
 });
 app.listen(port, () => {
 console.log(`Example app listening on port ${port}`)

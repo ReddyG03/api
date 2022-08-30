@@ -56,9 +56,8 @@ app.get('/loginsignup',function(req,res){
 app. get('/contact',function(req,res){if(a)
   res.sendFile(path.join(__dirname+'/contact.html')); else return res.redirect('/loginsignup');
 });
-app. get('/',function(req,res){if(a)
+app. get('/',function(req,res){
   res.sendFile(path.join(__dirname+'/index1.html'))
-  else return res.redirect('/loginsignup');
 });
 app.listen(port, () => {
 console.log(`Example app listening on port ${port}`)
